@@ -6,3 +6,11 @@ Created Template
 
 Uploaded project proposal
 
+2021.01.23
+
+Read "ClearGrasp: 3D Shape Estimation of Transparent Objects for Manipulation".
+
+2021.01.24
+
+Replicating experiment
+

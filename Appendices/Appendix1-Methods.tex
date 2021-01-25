@@ -1,0 +1,65 @@
+% Appendix A
+% For referencing this appendix elsewhere, use \ref{AppendixA}
+\chapter{Methods} % Main appendix title
+\label{Appendix-methods} 
+
+This appendix details procedures used to carry out the experiments
+
+\section{conda}
+\label{app:methods:Conda}
+
+conda commands used in this project:
+% Another good simplified reference
+% https://docs.conda.io/projects/conda/en/latest/commands.html
+
+\begin{verbatim}
+# List conda environments
+$ conda info --envs
+# Activate conda - conda environment appears in parenthesis on command prompt
+$ conda activate
+# Deactivate conda
+$ conda deactivate
+# Create and activate environment
+$ conda create --name cleargrasp
+$ conda activate cleargrasp
+# list modules
+$ conda list
+\end{verbatim}
+
+\section{ClearGrasp Install}
+
+For this project, ClearGrasp was originally deployed to an AWS (\cite{amazon2015amazon}) cloud EC2 server at the proof-of-concept stage, following the procedure described in \cite{cleargrasp-install2020}. For the actual work, using the Zivid One+ camera, ClearGrasp was deployed to a physical workstation: Dell Precison Tower 5810 with a 12-core Intel Xeon processor E5-1600 v3 and 32MB RAM. Given some software was already present, the procedure was simplified to:
+\begin{verbatim}
+# create conda environment
+$ conda create --name cleargrasp
+$ conda activate cleargrasp
+# change python simlynk to point to v3.6.9
+$ sudo ln -s /usr/bin/python3.6 /usr/bin/python
+# install libraries
+$ sudo apt-get install -y libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11
+$ sudo apt install -y libopenexr-dev zlib1g-dev openexr
+$ sudo apt install -y xorg-dev  # display widows
+$ sudo apt install -y libglfw3-dev
+# clone repository
+$ git clone git@github.com:Shreeyak/cleargrasp.git
+$ cd cleargrasp
+# download model checkpoints
+$ wget http://clkgum.com/shreeyak/cleargrasp-checkpoints 
+$ mv cleargrasp-checkpoints cleargrasp-checkpoints.zip
+$ unzip cleargrasp-checkpoints.zip
+$ mv cleargrasp-checkpoints data
+# requirements
+$ wget https://raw.githubusercontent.com/dsikar/cleargrasp/master/requirements_v2.txt
+$ pip install -r requirements_v2.txt
+# depth2depth compilation as per step 4 in https://github.com/Shreeyak/cleargrasp
+# Install open3d
+$ pip install open3d --no-cache-dir
+# copy config file
+$ cd eval_depth_completion/
+$ cp config/config.yaml.sample config/config.yaml
+# run evaluation
+$ python eval_depth_completion.py -c config/config.yaml
+\end{verbatim}
+
+
+
