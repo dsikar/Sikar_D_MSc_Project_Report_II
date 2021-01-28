@@ -26,7 +26,7 @@ $ conda activate cleargrasp
 $ conda list
 \end{verbatim}
 
-\section{ClearGrasp Install}
+\section{ClearGrasp Install - Ubuntu 19.04}
 
 For this project, ClearGrasp was originally deployed to an AWS (\cite{amazon2015amazon}) cloud EC2 server at the proof-of-concept stage, following the procedure described in \cite{cleargrasp-install2020}. For the actual work, using the Zivid One+ camera, ClearGrasp was deployed to a physical workstation: Dell Precison Tower 5810 with a 12-core Intel Xeon processor E5-1600 v3 and 32MB RAM. Given some software was already present, the procedure was simplified to:
 \begin{verbatim}
@@ -60,6 +60,50 @@ $ cp config/config.yaml.sample config/config.yaml
 # run evaluation
 $ python eval_depth_completion.py -c config/config.yaml
 \end{verbatim}
+
+\section{ClearGrasp Install - Ubuntu 20.04}
+
+Check Python version:
+\begin{verbatim}
+$ python --version
+Python 3.8.5    
+\end{verbatim}
+Since Python is version 3.x, the symlink will not be required. Download Anaconda:
+\begin{verbatim}
+$ wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh    
+\end{verbatim}
+Install:
+\begin{verbatim}
+$ bash Anaconda3-2020.11-Linux-x86_64.sh    
+\end{verbatim}
+Terminal restart (required), then, as with Ubuntu 19.04 install:
+\begin{verbatim}
+# List conda environments
+$ conda info --envs
+# Create and activate environment
+$ conda create --name cleargrasp
+$ conda activate cleargrasp
+\end{verbatim}
+And continue with setup:
+\begin{verbatim}
+# update and install
+$ sudo apt update
+$ sudo apt --fixed-broken install
+\end{verbatim}
+There are a couple of libraries missing:
+\begin{verbatim}
+E: Unable to locate package lbhdf5-10
+E: Unable to locate package libhdf5-cpp-11
+\end{verbatim}
+This could be a problem. Next we run a modified version of the requirements\_v2.txt (dsikar/cleargrasp.git). Also threw an error, fixed by installing opencv-python and commenting out corresponding line in requirements\_v2.txt:
+\begin{verbatim}
+$ pip install opencv-python
+opencv-python==4.1.1.26
+
+\end{verbatim}
+
+
+
 
 
 

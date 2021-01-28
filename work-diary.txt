@@ -14,3 +14,24 @@ Read "ClearGrasp: 3D Shape Estimation of Transparent Objects for Manipulation".
 
 Replicating experiment
 
+2021.01.25
+
+Replicated experiment ok on Ubuntu 19.04. TODO try 20.04 tomorrow.
+
+Note, using a new conda environment might have something to do with this relatively
+painless install, compared to first.
+
+2021.01.25
+
+Replicating experiment on Ubuntu 20.04.
+Failing - missing libraries.
+
+2021.01.28
+
+Determining a number of Transparent Object Identification CNNs.
+
+This is shaping up to be a "Comparison of Transparent Object Identificaiton using RGB-D cameras and CNNs"
+
+
+
+
