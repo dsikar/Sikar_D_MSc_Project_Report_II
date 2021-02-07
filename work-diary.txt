@@ -30,7 +30,23 @@ Failing - missing libraries.
 
 Determining a number of Transparent Object Identification CNNs.
 
-This is shaping up to be a "Comparison of Transparent Object Identificaiton using RGB-D cameras and CNNs"
+This is shaping up to be a "Comparison of Transparent Object Identification using RGB-D cameras and CNNs"
+
+Looking into training a robot end-to-end to move objects.
+
+2021.02.07
+
+Another angle, Unity has has a Robotic Hub on GitHub:
+
+https://github.com/Unity-Technologies/Unity-Robotics-Hub
+
+which integrates with ROS. One possibility is, using the simulator,
+complete with robotic arm and sensor cameras, acquire the image, be in RGB
+or RGBD, present it to processing pipeline and feedback to simulation
+for object manipulation, and evaluate the pipelines that way. The expectation
+being better pipelines will generate better path planning.
+Note that the transparent objects are placed within unity.
+
 
 
 
