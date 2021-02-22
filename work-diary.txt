@@ -47,6 +47,145 @@ for object manipulation, and evaluate the pipelines that way. The expectation
 being better pipelines will generate better path planning.
 Note that the transparent objects are placed within unity.
 
+2021.02.13
+
+Downloaded Zivid for Ubuntu packages as per instructions on:
+https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/59080712/Zivid+Software+Installation
+
+Section "Ubuntu 18.04"
+
+2021.02.20
+
+Going through Zivid Academy:
+https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/99844339/Zivid+Academy
+
+Keywords: Structured light.
+
+Error when running ZividStudio:
+
+"An error occurred: Error occurred during initialization: An OpenCL error occurred: Failed to get platforms
+
+Make sure the OpenCL driver is installed and working ('clinfo' needs to show at least one platform).
+
+For more help, visit the Zivid Knowledge Base at https://help.zivid.com.
+
+[CL_PLATFORM_NOT_FOUND_KHR]"
+
+Recommended fix https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/428165/OpenCL+Driver+Check
+
+For Ubuntu:
+
+"Intel (Ubuntu)
+
+Separately check OpenCL and OpenGL driver versions."
+
+OpenCL Driver Check, ran:
+
+sudo apt install -y clinfo
+ 
+/usr/bin/clinfo
+
+Output as expected:
+
+(base) simbox@simbox-wifi-server:~/Documents/zivid$ /usr/bin/clinfo
+Number of platforms                               0
+
+OpenGL Driver Check, ran:
+
+sudo apt install mesa-utils
+ 
+glxinfo | grep "OpenGL version"
+
+Output:
+
+(base) simbox@simbox-wifi-server:~/Downloads$ glxinfo | grep "OpenGL version"
+OpenGL version string: 4.3 (Compatibility Profile) Mesa 20.0.8
+
+Version 4.3, higher than 3.0 so presumed ok.
+
+When running ZividStudio
+
+cd /usr/bin
+(base) simbox@simbox-wifi-server:/usr/bin$ sudo ./ZividStudio 
+Segmentation fault
+
+Restarted, ran ZividStudio from Ubuntu start, same error:
+
+"An error occurred: Error occurred during initialization: An OpenCL error occurred: Failed to get platforms
+
+Make sure the OpenCL driver is installed and working ('clinfo' needs to show at least one platform).
+
+For more help, visit the Zivid Knowledge Base at https://help.zivid.com.
+
+[CL_PLATFORM_NOT_FOUND_KHR]"
+
+Tried from command line:
+
+(base) simbox@simbox-wifi-server:/usr/bin$ sudo ./ZividStudio
+Segmentation fault
+
+in /var/log/syslog:
+
+"Feb 20 13:08:02 simbox-wifi-server kernel: [  283.591172] traps: ZividStudio[4195] general protection fault ip:7fa51a2cfa46 sp:7ffef69ac390 error:0 in libZividCore.so[7fa519fbe000+38d1000]
+"
+Another more verbose error message:
+
+"(base) simbox@simbox-wifi-server:/usr/bin$ ./ZividStudio 
+onFatalError :  "Error occurred during initialization: An OpenCL error occurred: Failed to get platforms\n\nMake sure the OpenCL driver is installed and working ('clinfo' needs to show at least one platform).\n\nFor more help, visit the Zivid Knowledge Base at https://help.zivid.com.\n\n[CL_PLATFORM_NOT_FOUND_KHR]"
+showErrorMessageBoxAndThrow
+Error: An error occurred: Error occurred during initialization: An OpenCL error occurred: Failed to get platforms
+
+Make sure the OpenCL driver is installed and working ('clinfo' needs to show at least one platform).
+
+For more help, visit the Zivid Knowledge Base at https://help.zivid.com.
+
+[CL_PLATFORM_NOT_FOUND_KHR]"
+
+Reread Open CL Driver check:
+https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/428165/OpenCL+Driver+Check
+
+With note "In case the number of platforms is equal to 0 you need to install the OpenCL driver."
+
+Current CPU:
+
+"(base) simbox@simbox-wifi-server:/usr/bin$ cat /proc/cpuinfo | grep "model name"
+model name	: Intel(R) Xeon(R) CPU E5-1650 v3 @ 3.50GHz"
+
+Xeon(R) CPU E5-1650, which does not have integrated graphics according to:
+https://www.techpowerup.com/cpu-specs/xeon-e5-1650.c984
+
+And
+
+https://www.intel.com/content/www/us/en/processors/xeon/xeon-autodesk-workstation-brief.html
+
+While Zivid page states options for Ubuntu:
+
+https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/428084/GPU+Requirements
+
+Trying the python script:
+
+(base) simbox@simbox-wifi-server:~/git/zivid$ pip install zivid --user
+Collecting zivid
+Requirement already satisfied: numpy in /home/simbox/anaconda3/lib/python3.7/site-packages (from zivid) (1.17.2)
+Installing collected packages: zivid
+Successfully installed zivid-2.1.0.2.2.0
+
+Then suggested hello world to load library:
+
+(base) simbox@simbox-wifi-server:~/git/zivid$ python hellozivid.py 
+Segmentation fault (core dumped)
+
+Options:
+
+1. Get a workstation with Integrated CPU e.g. Intel i7 with HD630
+2. Get graphics card e.g. Nvidia GeForce GTX 1060 - ordered.
+
+
+
+
+
+
+
 
 
 
