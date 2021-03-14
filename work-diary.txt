@@ -216,9 +216,87 @@ Sun Feb 28 22:13:08 2021
 |    0   N/A  N/A      1433      G   ...setup/gnome-initial-setup       19MiB |
 +-----------------------------------------------------------------------------+
 
+2021.03.14
 
+Going over previous step from 2021.02.13
 
+This time we have an NVIDIA GPU card installed, previous was an Intel GPU but for reasons not understood did not play with Zivid software.
 
+Ideally we would have just swapped cards, but Ubuntu install was required to get NVIDIA 
+GeForce GTX 1060 6GB card working.
+
+https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/59080712/Zivid+Software+Installation
+
+1. Installing NVIDIA GPU drivers
+
+https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/58294334/NVIDIA+GPU
+
+$ sudo add-apt-repository ppa:graphics-drivers/ppa
+
+$ sudo apt install nvidia-driver-430
+
+# checking number of platforms
+$ sudo apt install -y clinfo
+$ /usr/bin/clinfo
+Number of platforms                               1
+(...)
+
+Above covers first section "Before installing Zivid Software". Next we go to section
+"Select your OS and Zivid camera:" then to Zivid One and Ubuntu 18.04
+
+$ wget -i https://www.zivid.com/hubfs/softwarefiles/releases/2.2.0+f0867d62-1/u16/ZividInstall1604.txt
+
+$ sudo dpkg -i *.deb
+
+Now zivid studio can be launched by searching "zivid" in Ubuntu launch. A firmware upgrade is
+performed. An error message popped up about USB 3 being required to connect camera.
+The Dell Precision T5810 does have one USB 3 port:
+https://www.dell.com/support/kbdoc/en-uk/000125679/dell-precision-t5810-workstation-visual-guide-to-your-computer
+
+Once connected to USB 3, Zivid Studio is able to make acquisitions and create point cloud, colour
+and depth files.
+
+Python scripting
+
+https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/427542/Zivid+Python
+
+pip install zivid failed with message:
+ModuleNotFoundError: No module named 'skbuild'
+
+We then tried installing from source:
+$ git clone git@github.com:zivid/zivid-python.git
+$ cd zivid-python/
+$ pip install .
+
+Got the same error message, then fixed with 
+$ pip install scikit-build
+
+Rerunning the install threw error:
+
+!! Missing module 'cmake' !!
+Please install 'cmake' manually or use PIP>=19
+
+This could have been an oversight  from
+
+https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/427556/Setting+up+Python
+
+So maybe we forgot to install a C/C++ compiler:
+
+$ sudo apt install clang --fix-missing
+$ clang --version
+(...)
+
+Same error thrown. So we tried to install cmake:
+
+$ sudo snap install cmake --classic
+
+Same error message. So we upgraded pip installed
+$ python -m pip install -U pip
+
+then
+
+$ pip install zivid
+And that worked. So perhaps should have updated pip first (probably another oversight of mine when reading Zivid docs)
 
 
 

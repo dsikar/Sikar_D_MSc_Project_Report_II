@@ -109,6 +109,53 @@ This section covers the installation of the Unity Robotics packages. As describe
 $ sudo ./UnityHub.AppImage unityhub://2020.2.3f1/8ff31bc5bf5b --no-sandbox 
 \end{verbatim}
 
+\section{NVIDIA GPU driver installation}
+
+The hardware used in this study consisted of a Dell Precision T5810 Xeon 12-core 32GB RAM.
+\begin{itemize}
+    \item Zivid One+ RGB-D camera
+    \item Dell Precision T5810 Xeon 12-core 32GB RAM Ubuntu 18.04 workstation
+    \item NVIDIA GeForce GTX 1060 6GB video card
+\end{itemize}
+
+The workstation was originally equipped with a NVIDIA gm206glm Quatro M2200. The cards were swapped and video drivers failed to load, which was rectified with a Ubuntu reinstall.
+Zivid studio was installed following the official \href{https://zivid.atlassian.net/wiki/spaces/ZividKB/pages/59080712/Zivid+Software+Installation}{documentation}, in short:
+\begin{verbatim}
+ # Installing NVIDIA GPU drivers
+ $ sudo add-apt-repository ppa:graphics-drivers/ppa
+ $ sudo apt install nvidia-driver-430
+ # checking number of platforms
+ $ sudo apt install -y clinfo
+ $ /usr/bin/clinfo
+Number of platforms                               1
+(...)
+\end{verbatim}
+
+\section{Zivid Studio and Python module installation}
+Once the NVIDIA drivers are configured, Zivid Studio and Python modules can be installed:
+\begin{verbatim}
+# Installing zivid studio
+$ wget -i https://www.zivid.com/hubfs/softwarefiles/releases/2.2.0+f0867d62-1/u16/ZividInstall1604.txt
+$ sudo dpkg -i *.deb
+# Zivid Studio can now be run by search zivid on ubuntu start 
+
+# clang might be required, if pip install of zivid is not adding it
+$ sudo apt install clang --fix-missing
+$ clang --version
+(...)
+
+# Python - must be 3.6.+ and pip 19.+, also alias python3 to python and pip3 to pip 
+# for good measure
+
+# update pip if necessary
+$ python -m pip install -U pip
+(...)
+
+# Install
+# pip install zivid    
+\end{verbatim}
+
+\section{Zivid One+ Capture}
 
 
 
