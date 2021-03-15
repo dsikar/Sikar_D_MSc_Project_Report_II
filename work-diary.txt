@@ -298,8 +298,21 @@ then
 $ pip install zivid
 And that worked. So perhaps should have updated pip first (probably another oversight of mine when reading Zivid docs)
 
+2021.03.15
 
+Python scripting
 
+Cloned Zivid python repo:
+
+$ git clone git@github.com:zivid/zivid-python.git
+$ cd zivid-python/samples
+# capture a point cloud
+$ python sample_capture.py
+# capture rgb image
+$ python sample_capture_2d.py
+
+Photos with a glass cup using zivid studio show the camera is unable to capture a point
+adequately as described by Sajjan et al. 2019.
 
 
 
