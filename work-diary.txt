@@ -369,7 +369,49 @@ Executing with bash throws and error,
 
 eval_depth_completion.py
 
+2021.03.22
 
+Some work on scholarly and semanticscholar python libraries to automate literature review.
+https://github.com/dsikar/scholarly
 
+Then:
+1. Visualising point cloud using Python:
+Following example in:
+http://www.open3d.org/docs/0.9.0/tutorial/Basic/pointcloud.html
+
+Locating fragment.py and referenced .ply files
+>>> import open3d
+>>> print(open3d.__file__)
+/home/daniel/.local/lib/python3.6/site-packages/open3d/__init__.py
+
+$ ls /home/daniel/.local/lib/python3.6/site-packages/open3d/
+_build_config.py  core.py  cpu  cuda  __init__.py  j_visualizer.py  libc++abi.so.1  libc++.so.1  ml  _ml3d  __pycache__  resources  static  visualization
+
+$ grep -nr fragment.py /home/daniel/.local/lib/python3.6/site-packages/open3d/
+(no matches)
+
+Maybe in numpy?
+
+$ python
+Python 3.6.9 (default, Jan 26 2021, 15:33:00) 
+[GCC 8.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import numpy
+>>> print(numpy.__file__)
+/home/daniel/.local/lib/python3.6/site-packages/numpy/__init__.py
+
+$ grep -nr pointcloud.py  /home/daniel/.local/lib/python3.6/site-packages/numpy
+(no matches)
+
+Point cloud exploratory data analysis done in:
+github.com/dsikar/zivid/PointCloudExploratoryDataAnalysis.ipynb
+
+# Loading zivid .zdf
+https://github.com/zivid/zivid-python-samples
+https://github.com/zivid/zivid-python-samples/blob/master/source/applications/basic/visualization/read_zdf_vis_3d.py
+
+Next:
+1. Load .ply
+2. Run ZividOne+ data through cleargrasp
 
 
