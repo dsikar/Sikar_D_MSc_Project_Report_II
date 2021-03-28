@@ -438,7 +438,14 @@ TODO: Display Boundary Detection and Transparent Object Segmentation networks. B
 https://arxiv.org/pdf/1910.02550.pdf, there are also expected to be auto-encoders.
 
 To get there, run the eval_depth_completion configuration in PyCharm and set breakpoints in file 
-depth_completion_api.py, lines 663 (InferenceOutlines - Boundary Detection)  and 595 (InferenceMasks - Transparent Object Segmentation).
+depth_completion_api.py, lines 663 (InferenceOutlines - Boundary Detection)  and 595 (InferenceMasks - Transparent Object Segmentation), then stepping into the functions.
+
+Note, to display other networks with command:
+
+summary(self.model, input_size=(1, 3, 144, 256))
+
+When execution is stopped, command must be run in debugger console (where local variables are available), not in Python
+Console (where local variables are not available).
 
 
 
