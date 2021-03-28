@@ -414,4 +414,36 @@ Next:
 1. Load .ply
 2. Run ZividOne+ data through cleargrasp
 
+2021.03.27
+
+We have python examples here:
+https://github.com/zivid/zivid-python-samples
+We have .zdf (zivid capture format) examples here:
+https://www.zivid.com/images
+
+The intellisense camera used by ClearGrasp uses the .exr format:
+https://www.openexr.com/about.html
+
+So somehow, we need to figure out how to make the .zdf format play with the current codebase, which uses .exr.
+
+Downloading a dataset of Intel's realsense RGBD images from:
+http://www.cs.technion.ac.il/~twerd/HandNet/
+
+To see what they look like.
+
+Managed to display one network, looks like an auto-encoder. See Appendix1-Methods.tex, \section{PyTorch}.
+This was the Normal Estimation (InferenceNormals class) network. 
+
+TODO: Display Boundary Detection and Transparent Object Segmentation networks. By page 2 in
+https://arxiv.org/pdf/1910.02550.pdf, there are also expected to be auto-encoders.
+
+To get there, run the eval_depth_completion configuration in PyCharm and set breakpoints in file 
+depth_completion_api.py, lines 663 (InferenceOutlines - Boundary Detection)  and 595 (InferenceMasks - Transparent Object Segmentation).
+
+
+
+
+
+
+
 

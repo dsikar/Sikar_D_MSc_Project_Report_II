@@ -80,3 +80,100 @@ The original experiment used a UR3 robotic arm
 % ROS#
 % https://github.com/siemens/ros-sharp
 
+\section{Network Architectures}
+
+In this section we discuss the network architectures used by ClearGrasp and Depth2Depth.
+
+
+
+\section{Depth Cameras}
+
+\begin{verbatim}
+Start here: https://www.intelrealsense.com/beginners-guide-to-depth/
+and take it from there.
+Maybe also have a look here:
+https://ulir.ul.ie/bitstream/handle/10344/7592/Sivcev_2018_Smart.pdf?sequence=5
+Point GrayBumblebee 2 stereo camera
+Point Gray BlackFly monocular camera
+\end{verbatim}
+
+
+\section{Prediction Workflow}
+
+\begin{verbatim}
+1. Input
+2. Networks
+
+eval_depth_completion.py, line 169:
+
+We get the "corrected" output depth likesuch:
+
+output_depth, filtered_output_depth = depthcomplete.depth_completion(
+(...)
+
+depth_completion is a method of the DepthToDepthCompletion class,
+defined in:
+
+depth_completion_api.py, line 732:
+    def depth_completion(self,
+    (...)
+    which returns numpy arrays:
+    
+        return self.output_depth, self.filtered_output_depth
+
+Note, these are to compute error metrics, the actual images
+are stored during the inference process.
+
+To obtain the two arrays:    
+    # perform object segmentation
+    def _modify_depth_delete_masks(
+
+ 571       self.mask_predicted = self.inferenceMasks.runOnNumpyImage
+ 
+ 
+ _complete_depth
+ 
+ # SURFACE NORMALS
+ (...) self.inferenceNormals.runOnNumpyImage(input_image)
+ 
+ Then, perform boundary detection:
+ # OUTLINES
+        self.occlusion_weight, self.occlusion_weight_rgb, self.outlines_rgb = self.inferenceOutlines.runOnNumpyImage(
+            input_image)
+            
+            
+ 
+ self.InferenceMasks
+ 
+ 3 models
+ inference_models.InferenceNormals
+ inference_models.InferenceOutlines(
+ inference_models.InferenceMasks(
+ 
+In inference_models.py:
+ 
+self.model = deeplab_masks.DeepLab(num_classes=3, backbone='resnet', sync_bn=True,
+                            freeze_bn=False)
+                            
+we get deeplab_masks from
+
+from .modeling import deeplab, deeplab_masks
+
+Network architectures used by each task (normal estimation, boundary detection and 
+transparent object segmentation).
+
+InferenceOutlines -> deeplab_resnet
+
+InferenceNormals -> deeplab_resnet
+
+InferenceMasks -> drn
+
+In all three cases, image is presented as an one-dimensional array.
+(...)
+# Create Transforms
+        self.transform = iaa.Sequential([
+(...)
+
+
+\end{verbatim}
+
