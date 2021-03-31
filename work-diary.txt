@@ -448,6 +448,12 @@ When execution is stopped, command must be run in debugger console (where local 
 Console (where local variables are not available).
 
 
+2021.03.31
+
+Got network architectures for InferenceOutlines and InferenceMasks. 
+
+Next, write-up then present a ZividOne+ depth image and RGB image to network.
+
 
 
 
