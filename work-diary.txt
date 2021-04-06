@@ -454,6 +454,29 @@ Got network architectures for InferenceOutlines and InferenceMasks.
 
 Next, write-up then present a ZividOne+ depth image and RGB image to network.
 
+2021.04.06
+
+Running the cleargrasp script we have:
+
+python eval_depth_completion.py -c config/config.yaml
+
+In config/config.yaml:
+
+(...)
+  - image: '../data/sample_dataset/real-val/d435/'
+    depth: '../data/sample_dataset/real-val/d435/'
+    masks: '../data/sample_dataset/real-val/d435/'
+    gt_depth: '../data/sample_dataset/real-val/d435/'
+(...)
+eval_depth_completion.py will parse these attributes:
+
+image, depth, masks and ground truth depth.
+
+# Let's take a look at the .exr files:
+https://stackoverflow.com/questions/55556277/read-process-and-show-the-pixels-in-exr-format-images
+
+Todo, download .exr realsense datasets and run live_demo.py on image and depth files.
+
 
 
 
