@@ -476,6 +476,36 @@ image, depth, masks and ground truth depth.
 https://stackoverflow.com/questions/55556277/read-process-and-show-the-pixels-in-exr-format-images
 
 Todo, download .exr realsense datasets and run live_demo.py on image and depth files.
+Downloaded to data/realsense/ - quite a few pairs to choose from e.g.:
+042_color.png
+042_depth_open.png
+042_depth.png
+
+2021.04.07 
+
+Intel RealSense D435
+https://www.intelrealsense.com/depth-camera-d435/
+
+One related dataset (Novkovic et al. 2019, minus transparent objects):
+https://clubs.github.io/
+
+Another paper on RGB-D:
+http://chalearnlap.cvc.uab.es/dataset/34/description/
+4 out of 5 references are from github including a minimal implementation of PyTorch-YOLOv3:
+https://github.com/eriklindernoren/PyTorch-YOLOv3
+
+Downloaded cleargrasp's test and validation datasets:
+http://clkgum.com/shreeyak/cleargrasp-dataset-test
+
+Which contain .exr files:
+https://www.openexr.com/index.html
+
+
+
+
+
+
+
 
 
 
