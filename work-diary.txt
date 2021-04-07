@@ -500,6 +500,13 @@ http://clkgum.com/shreeyak/cleargrasp-dataset-test
 Which contain .exr files:
 https://www.openexr.com/index.html
 
+import OpenEXR
+assumed to be working on Ubuntu 18.04 as it is used in api/utils.py
+
+2021.04.08
+
+Todo. Check if zivid python lib can save .exr files.
+
 
 
 
