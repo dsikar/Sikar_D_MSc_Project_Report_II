@@ -507,6 +507,85 @@ assumed to be working on Ubuntu 18.04 as it is used in api/utils.py
 
 Todo. Check if zivid python lib can save .exr files.
 
+****************
+** 2021.04.17 **
+****************
+
+* 1. Action previous todo (2021.08.08)
+
+Main source:
+https://github.com/zivid/zivid-python
+
+Additional findings (related to semantic versioning, which Zivid uses):
+
+On the meaning of "major", "minor" and "bug fixes" w.r.t. semantic versioning:
+https://semver.org/
+
+On the meaning of keywords:
+"MUST", "MUST NOT", "REQUIRED", "SHALL", "SHAL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" w.r.t. software development.
+https://tools.ietf.org/html/rfc2119
+
+One key operation is given by example:
+
+https://github.com/zivid/zivid-python#examples
+
+where a camera capture is turned into a point cloud numpy array:
+rgba = frame.point_cloud().copy_data("rgba") # Get point colors as [Height,Width,4] uint8 array
+
+Another key operation is given in:
+
+https://github.com/zivid/zivid-python/tree/master/samples
+
+Specifically:
+
+https://github.com/zivid/zivid-python/blob/master/samples/sample_capture_2d.py
+
+Where a 2D image is obtained. With the point cloud and the 2d image, we should be able
+to modify the cleargrasp code to use Zivid One+ camera data.
+
+Additional parameters still need to be considered e.g. "hand to eye" calibration, (robot
+pose) and camera intrinsics, however, the 2d image and point cloud files should be sufficient to substitute the data in:
+
+https://github.com/Shreeyak/cleargrasp/blob/master/live_demo/live_demo.py
+
+Lines:
+    while True:
+        # Get Frame. Expected format: ColorImg -> (H, W, 3) uint8, DepthImg -> (H, W) float64
+        color_img, input_depth = rcamera.get_data()
+        input_depth = input_depth.astype(np.float32)
+
+From this point onwards we should be able to piggyback on the execution. Optimally,
+acquire a D400 realsense camera, to have a better idea of what the data looks like,
+and adjust accordingly to work with the Zivid One+
+
+Intel D400 series specification:
+https://www.mouser.co.uk/datasheet/2/612/Intel_RealSense_D400_Family_Datasheet_Jan2019-1571271.pdf
+
+Option 1. Intel RealSense D415, supplied with tripod and cabme:
+https://www.intelrealsense.com/depth-camera-d415/
+
+Option 2. Module - custom USB adapter cable required:
+https://www.intelrealsense.com/stereo-depth-modules-and-processors/
+
+Noting that there are plenty of datasets around that should give us an idea of the output,
+both depth and image.
+
+So, to action the todo, we need to look at .exr files (the depth output of the Intel Realsene series, and determine how they compare to the ZividOne+ depth, as saved in .zdf file format.
+
+* 2. Time remaining:
+
+April 17, 18, 24, 25
+May 1, 2, 3, 8, 9, 15, 16, 22, 23, 29, 30, 31
+June 7, 8, 9, 10, 11 (part-time), 19, 20, 26, 27 (hard deadline)
+
+* 3. Report structure
+
+Adding lorem ipsum text to flesh it out
+
+
+
+
+
 
 
 
