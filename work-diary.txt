@@ -577,10 +577,21 @@ So, to action the todo, we need to look at .exr files (the depth output of the I
 April 17, 18, 24, 25
 May 1, 2, 3, 8, 9, 15, 16, 22, 23, 29, 30, 31
 June 7, 8, 9, 10, 11 (part-time), 19, 20, 26, 27 (hard deadline)
+NB Zivid One+ loaned camera to be returned in June
 
 * 3. Report structure
 
 Adding lorem ipsum text to flesh it out
+
+****************
+** 2021.04.19 **
+****************
+
+* 1. Autoencoders
+
+As ClearGrasp and the model it is based on are based on autoencoders, We need a detailed discussion on autoencoders, high level in introduction, more detailed in methods. It would make sense to start with the base model "Deep Depth Completion of a Single RGB-D Image" from http://deepcompletion.cs.princeton.edu/, git repository https://github.com/yindaz/DeepCompletionRelease
+
+
 
 
 
