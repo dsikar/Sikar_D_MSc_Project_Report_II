@@ -20,6 +20,49 @@
 %-----------------------------------
 
 \section{Aims and Objectives}
+Research questions go here, e.g. (from Zhang and Funkhouser):  
+ 
+ “how can we get training data for depth completion?,”  “what depth representation should we use?,” and “how should cues from color and depth be combined?" 
+ "On average, 64.6\% of the pixels missing from the raw depth images are filled in by our reconstruction process"
+ "Previous work has considered a number of indirect rep-resentations  of  depth"  
+  
+ "Instead,  we  focus  on  predicting  surface  normals  and occlusion  boundaries. "  
+ 
+ "A third interesting question is “what is the best way totrain a deep network to predict surface normals and occlu-sion boundaries for depth completion?” 
+  
+ The deep network architecture is chosen from "Physically-based rendering for indoor sceneunderstanding  using  convolutional  neural  networks." by Zhang et al  
+  
+ "The model is a fully convolutional neural networkbuilt on the back-bone of VGG-16 with symmetry encoderand decoder"  
+  
+ "It is also equipped with short-cut connections and shared pooling masks for corresponding max pooling and unpooling layer"  
+  
+ "What image channels should be input to the network?"
+ 
+  RGB-D image was not used to regress to surface normals  
+   
+"In general, we find that the network learns to predict nor-mals better from color than depth"  
+ 
+"strategy of separating “prediction without depth” from“optimization  with  depth”  "
+
+"he prediction network does not have to be retrained for different depth sensors. Second, the optimization can be generalized to take a variety of depth observations as reg-ularization," 
+
+\subsection{Network architecture}
+
+"networks used for this project are derived fromthe  surface  normal  estimation  model  proposed  in  Zhanget.al [80] with the following modifications."  
+\textbf{Input}
+\begin{itemize}
+    \item Color.  The color is a 3-channel tensor with R,G,B foreach. The intensity values are normalized to [-0.5 0.5]. We use a bi-linear interpolation to resize color imageif necessary.
+    \item Depth. The absolute values of depth in meter are usedas input.  The pixels with no depth signal from sensorare assigned a value of zero. To resolve the ambiguitybetween “missing” and “0 meter”, a binary mask indi-cating the pixels that have depth from sensor is addedas  an  additional  channel  as  suggested  in  Zhang  et.al[79]. Overall, the depth input contains 2 channels (ab-solute depth and binary valid mask) in total.  To pre-vent inaccurate smoothing, we use the nearest neigh-bor search to resize depth image.
+    \item Color+Depth.  The input in this case is the concatena-tion of the color and depth as introduced above.  Thisresults in a 5-channel tensor as the input.
+\end{itemize}
+
+\textbf{Output:}
+"The network for absolute depth, surface normal,and depth derivative outputs results with 1, 3, and 8 chan-nels  respectively.   The  occlusion  boundary  detection  net-work generates 3 channel outputs representing the proba-bility of each pixel belonging to “no edge”, “depth crease”,and “occlusion boundary”.  "
+ 
+\textbf{Loss} "Depth, surface normal, and derivative are predicted as regression tasks.  The SmoothL1 loss1is used for training depth and derivative, and the cosine embedding loss2 is used for training surface normal.  The occlusion boundary detection is formulated into a classification task, and cross entropy loss3is used. The last two batch normalization layers are removed because this results in better performance in practice." \textbf{NB} last two batch norm layers removed. 
+Paused at B.1.1 Ablation Studies
+
+ 
 \lipsum[1]
 
 

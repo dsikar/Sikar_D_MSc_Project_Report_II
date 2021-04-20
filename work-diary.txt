@@ -591,7 +591,14 @@ Adding lorem ipsum text to flesh it out
 
 As ClearGrasp and the model it is based on are based on autoencoders, We need a detailed discussion on autoencoders, high level in introduction, more detailed in methods. It would make sense to start with the base model "Deep Depth Completion of a Single RGB-D Image" from http://deepcompletion.cs.princeton.edu/, git repository https://github.com/yindaz/DeepCompletionRelease
 
+****************
+** 2021.04.20 **
+****************
 
+Continuing, we looked at the pdf:
+https://arxiv.org/pdf/1803.09326.pdf
+
+And added some snippets to Methods section (to be expanded).
 
 
 
