@@ -600,6 +600,32 @@ https://arxiv.org/pdf/1803.09326.pdf
 
 And added some snippets to Methods section (to be expanded).
 
+****************
+** 2021.04.21 **
+****************
+
+Continuing with autoencoders, there are two references for the network architecture, one is ClearGrasp:
+https://github.com/Shreeyak/cleargrasp
+
+The other is the DeepCompletion project, which ClearGrasp extends:
+https://github.com/yindaz/DeepCompletionRelease
+
+ClearGrasp defines the autoencoders (PyTorch) in:
+https://github.com/Shreeyak/cleargrasp/tree/master/pytorch_networks
+
+DeepCompletion (Lua/Torch) in:
+https://github.com/yindaz/DeepCompletionRelease/blob/master/torch/model_deep.lua
+https://github.com/yindaz/DeepCompletionRelease/blob/master/torch/model_deep_new.lua
+
+The DeepCompletion paper has a discussion on network architecture (pg. 4): 
+https://arxiv.org/pdf/1803.09326.pdf
+
+
+
+
+
+
+
 
 
 
