@@ -199,6 +199,32 @@ OpenEXR is not playing well with windows. TODO Try on Ubuntu. Works ok on Ubuntu
 "Overall,  our  main  algorithmic  insight  is  that  it  is  bestto  decompose  RGB-D  depth  completion  into  two  stages:1) prediction of surface normals and occlusion boundariesonly from color, and 2) optimization of global surface struc-ture from those predictions with soft constraints providedby observed depths.  During experiments we find with thisproposed  approach  has  significantly  smaller  relative  errorthan alternative approaches. It has the extra benefit that thetrained network is independent of the observed depths andso does not need to be retrained for new depth sensors."  
 The one we are interested in are autoenconders and GAN architectures (citations 70 and 58, respectively).
 
+\section{Live demo}
+ClearGrasp provides a live demo, to run it, the ./build/realsense executable, starts the camera and listens to port 50010. 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{Figures/realsenseOutputForReport.png}
+\caption{RealSense Stream, showing left to right the RGBD and the RGB images}
+\label{fig:realsenseOutputForReport}
+\end{figure}
+The live\_demo.py script loads the configurations defined in config/config.yaml e.g. storage location, weight files (checkpoints) for surface normals, outlines and mask segmentation models, the path to depth2depth executable and so forth. The depth completion API is initialised and inside a while loop, the RGB image and input depth are obtained from the camera:
+\begin{verbatim}
+color_img, input_depth = rcamera.get_data()
+input_depth = input_depth.astype(np.float32)
+\end{verbatim}
+rcamera being an object of the realsense library. color\_img is a TODO data type size, input\_depth is a TODO data type size.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{Figures/ClearGraspLiveDemoForReport.png}
+\caption{ClearGrasp live demo, showing on top row, left to right, input RGB image, predicted surface normals, predicted outlines (boundaries) and occlusion boundary weights. Bottom row, left to right, input depth mapped,, output depth mapped, filtered output depth mapped and blank image to make up the row.}
+\label{fig:ClearGraspLiveDemoForReport}
+\end{figure}
+
+This is the point where the script may be modified to use Zivid One+ data.
+
+
+
+
 
 
 

@@ -626,6 +626,34 @@ https://arxiv.org/pdf/1803.09326.pdf
 
 Continuing with the DeepCompletion paper, there are experimental studies in the appendix, explaining choices made for ground truth, loss function and depth representation choices pg 13.
 
+****************
+** 2021.04.24 **
+****************
+
+Installing the librerealsense drivers on Ubuntu 18.04:
+https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md
+
+When running the demo, we got an error:
+
+$ ./build/realsense 
+Listening...
+realsense: /build/glfw3-KYdbSD/glfw3-3.2.1/src/window.c:774: glfwSetWindowUserPointer: Assertion `window != NULL' failed.
+Aborted (core dumped)
+
+Debugging, first step, does camera work? Demo worked after reboot.
+
+Next step, run live_demo.py on pycharm, stop on lines:
+
+color_img, input_depth = rcamera.get_data()
+input_depth = input_depth.astype(np.float32)
+
+Note size and data types for color_img, input_depth and add to report.
+Next, visualise point cloud. Then same for Zivid One+, finally swap one for the other and run pipeline.
+
+
+
+
+
 
 
 

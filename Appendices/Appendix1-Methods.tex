@@ -1403,6 +1403,56 @@ Estimated Total Size (MB): 480.17
 
 \end{verbatim}
 
+\section{librerealsense installation}
+These steps follow the procedure described in the librerealsense repository (\cite{librealsense2021}) on Ubuntu 18.04
+\begin{verbatim}
+# Register the server's public key
+sudo apt-key adv --keyserver keys.gnupg.net --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE ||
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key
+F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE 
+# Add the server to the list of repositories
+# Ubuntu 18 LTS:
+sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo bionic main" -u
+# Install the libraries
+sudo apt-get install librealsense2-dkms
+sudo apt-get install librealsense2-utils
+# Optionally install the developer and debug packages
+sudo apt-get install librealsense2-dev
+sudo apt-get install librealsense2-dbg
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Running the realsense live demo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Running the realsense live demo}
+Once all required libraries have been installed, the system must be rebooted. Then, a stream started:
+\begin{verbatim}
+~/git/cleargrasp/live_demo/realsense$ ./build/realsense    
+\end{verbatim}
+Once the stream is running, the live demo may be started:
+\begin{verbatim}
+~/git/cleargrasp/live_demo$ python live_demo.py -c config/config.yaml
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% tcpflow
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{tcpflow}
+tcpflow (\cite{tcpflowElson2013}, \cite{garfinkel2013passive}) is able to capture data packets, transmitted using the TCP (\cite{rfc793}) host-to-host protocol (which provides a process-to-process communication service) and store the data in a human readable format, such that it may be analysed and debugged. For this study, it is used to reconstruct and record data transmissions between the depth camera stream and the prediction engine. 
+
+\begin{verbatim}
+sudo apt-get install -y tcpflow    
+\end{verbatim}
+
+tcpflow can then be run to monitor port 50010:
+\begin{verbatim}
+sudo tcpflow -i lo -c port 50010  
+\end{verbatim}
+
+
+
+
+
 
 
 
