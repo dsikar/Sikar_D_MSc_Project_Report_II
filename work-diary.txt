@@ -671,6 +671,45 @@ We have a file ~/git/zivid/create_depth_map.py
 
 We need to create a function that will return an image and input map, at 720 * 1280 * 3 and 720 * 1280, then call that on line 99 of live_demo.py, noting that the expected input map is a numpy array of data type float32.
 
+****************
+** 2021.04.26 **
+****************
+
+Reading the RealSense 415 datasheet:
+https://www.mouser.com/pdfdocs/Intel_D400_Series_Datasheet.pdf
+
+" In addition to depth video stream, it can provide color, and infrared video streams."
+
+" The left and right imagers capture the scene and sends imager data to the depth imaging processor, which calculates depth values for each pixel in the image by correlating points on the left image to the right image and via shift between a point on the Left image and the Right image. The depth pixel values are processed to generate a depth frame."
+
+Table 3-1. Format Z [16 bits] "Depth Only Mode", assumption is depth is 16 bit value.
+
+GUI tools provided in SDK 2.0:
+Intel® RealSense™ Viewer– A GUI based application for a quick evaluation of the RealSense camera.
+Depth Quality Test tool for Intel® RealSense™ Camera– A GUI based application for testing the camera’s depth quality
+SDK:
+https://github.com/IntelRealSense/librealsense
+
+Calibration Support:
+The name of the tool is: Intel® RealSense™ Dynamic Calibrator, please find it on https://downloadcenter.intel.com/
+There are two types of dynamic calibrations that are supported by the tool:
+1.Targeted Dynamic Calibration (Depth Scale Calibration)
+2.Target-less Dynamic Calibration (Rectification Calibration)
+Refer to the user guide of Intel® RealSense™ Dynamic Calibrator for further information.
+
+Statistical image analysis
+https://math.dartmouth.edu/~m70s20/ImageAnalysis.pdf
+Statistical Properties of Images
+http://www.iste.co.uk/data/doc_noyoaiyjtdiw.pdf
+Introduction to statistical methods in signal and imageprocessing
+https://hal.archives-ouvertes.fr/cel-01423624/file/IntroBayesFF.pdf
+
+
+
+
+
+
+
 
 
 
