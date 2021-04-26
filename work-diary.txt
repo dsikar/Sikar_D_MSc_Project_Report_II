@@ -707,6 +707,17 @@ https://hal.archives-ouvertes.fr/cel-01423624/file/IntroBayesFF.pdf
 Need to
 1. scale one+ image to 720, 1280, 3. Depth map (to be obtained) to 720, 1280, before presenting to network.
 
+Got files:
+
+$ tar tvf pointcloud.tar.gz 
+-rw-r--r-- daniel/daniel  2607 2021-04-26 21:54 read_zdf.py
+-rw-rw-r-- daniel/daniel 9216128 2021-04-26 21:54 copy_data_rgba.npy
+-rw-rw-r-- daniel/daniel 27648128 2021-04-26 21:54 copy_data_xyz.npy
+-rw-r--r-- daniel/daniel  2764928 2021-04-26 21:59 color_img.npy
+-rw-r--r-- daniel/daniel  7372928 2021-04-26 21:59 input_depth_orig.npy
+
+
+
 
 
 
