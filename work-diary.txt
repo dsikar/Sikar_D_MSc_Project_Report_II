@@ -716,6 +716,36 @@ $ tar tvf pointcloud.tar.gz
 -rw-r--r-- daniel/daniel  2764928 2021-04-26 21:59 color_img.npy
 -rw-r--r-- daniel/daniel  7372928 2021-04-26 21:59 input_depth_orig.npy
 
+****************
+** 2021.04.27 **
+****************
+
+Preprocessing for Zivid One+ files.
+
+D415 image data types and dimensions.
+
+            size            datatype
+D415
+input_image (720, 1280, 3)  uint8
+input_depth (720, 1280)     float64
+ZividOne+
+input_image (1200, 1920, 4) uint8
+input_depth (1200, 1920, 3) float32
+
+
+Pre-processing of Zivid One+ files:
+
+1. Resize to match D415
+
+from skimage.transform import resize
+rgb_resized = resize(rgb, (720, 1280))
+# This might take care of nans
+
+2. Remove last dimension of rgb file to match 720 * 1280 * 3
+
+Figure out what to do with input_depth, this needs to be flattened somehow - (1200, 1920, 3) to (1200, 1920)
+
+Looking at this on D415xZividOnePlus.ipynb colab, more clues might exist in ClearGrasp codebase.
 
 
 
