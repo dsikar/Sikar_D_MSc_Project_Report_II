@@ -747,6 +747,14 @@ Figure out what to do with input_depth, this needs to be flattened somehow - (12
 
 Looking at this on D415xZividOnePlus.ipynb colab, more clues might exist in ClearGrasp codebase.
 
+****************
+** 2021.04.29 **
+****************
+
+We are at the stage where we will probably be able to use the Z1+ with the ClearGrasp pipeline.
+The next question is, can the ClearGrasp output then be used in the Z1+ pipeline? This would require correct array dimensions - probably (1200, 1920, 3). Given the output of the convolutional autoencoders is something in the region of 300 * 200 (TBC), there is some work to be done here in the way of resizing and interpolation.
+We might get that far, so might have to leave the second part as future work, which may include redesigning autoencoders to adapt output geometries, as time is running out. We need this results wrapped up by the last week of May, camera shipped back in June plus results and discussion write-up to return at the same time camera returns, with full dissertation wrapped up by the end of June.
+
 
 
 
