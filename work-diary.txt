@@ -753,10 +753,101 @@ Looking at this on D415xZividOnePlus.ipynb colab, more clues might exist in Clea
 
 We are at the stage where we will probably be able to use the Z1+ with the ClearGrasp pipeline.
 The next question is, can the ClearGrasp output then be used in the Z1+ pipeline? This would require correct array dimensions - probably (1200, 1920, 3). Given the output of the convolutional autoencoders is something in the region of 300 * 200 (TBC), there is some work to be done here in the way of resizing and interpolation.
-We might get that far, so might have to leave the second part as future work, which may include redesigning autoencoders to adapt output geometries, as time is running out. We need this results wrapped up by the last week of May, camera shipped back in June plus results and discussion write-up to return at the same time camera returns, with full dissertation wrapped up by the end of June.
+We might not get that far, so might have to leave the second part as future work, which may include redesigning autoencoders to adapt output geometries, as time is running out. We need this results wrapped up by the last week of May, camera shipped back in June plus results and discussion write-up to return at the same time camera returns, with full dissertation wrapped up by the end of June.
 
 Useful discussion, specially converting between dimensions:
 https://stackoverflow.com/questions/51350493/convertion-of-ply-format-to-pcd-format
+
+****************
+** 2021.05.01 **
+****************
+
+Tasks for today:
+
+1. Visualise realsense depth output.
+It turns out we have done this, between local jupyter notebook PointCloudExploratoryDataAnalysis and colab notebook D415xZividOnePlus.
+
+The one question that remained was how to turn z1+ depth from three dimensional to 2 dimensional array. The naive way is to discard two of the last 3 dimensions, then squeeze the array.
+
+Looking at:
+https://github.com/zivid/zivid-python/blob/master/modules/zivid/point_cloud.py
+
+def copy_data(self, data_format):
+
+there is a 2d option ("z") for depth:
+
+        Supported data formats:
+        xyz:        ndarray(Height,Width,3) of float
+        xyzw:       ndarray(Height,Width,4) of float
+        z:          ndarray(Height,Width)   of float
+        rgba:       ndarray(Height,Width,4) of uint8
+        snr:        ndarray(Height,Width)   of float
+        xyzrgba:    ndarray(Height,Width)   of composite dtype (accessed with e.g. arr["x"])
+
+Further in:
+
+https://raw.githubusercontent.com/zivid/zivid-python-samples/master/source/applications/advanced/create_depth_map.py
+
+def _point_cloud_to_cv_z(point_cloud):
+
+The function call is shown:
+
+depth_map = point_cloud.copy_data("z")
+
+while in the main() section we see:
+
+point_cloud = frame.point_cloud()
+
+So at this point we should be able to say:
+input_depth = point_cloud.copy_data("z").
+
+At this point we need to resize the z1+ input_depth from (1200, 1920) to (720,1280).
+
+We should also be able to get rgba from the same frame:
+
+rgba = point_cloud.copy_data("rgba")
+
+and discard the "a" alpha/transparency channel, then resize.
+
+****************
+** 2021.05.02 **
+****************
+
+The capture is partially working, except for input_depth_mapped, using the Z1+, with camera intrinsics borrowed from the D415. Next we are extracting the camera extrinsics using c++ libraries, as described here:
+
+https://github.com/zivid/zivid-cpp-samples
+
+This should be revisited at some point to do the full install with Eigen 3, PCL and OpenCV, to leverage anything that has not got a Python wrapper.
+
+Eigen was cloned and we should be able to point to the repository.
+OpenCV install:
+https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html
+PCL install TBA
+
+We managed to get the camera intrinsics:
+
+~/git/zivid-cpp-samples/build(master)$ ./GetCameraIntrinsics 
+Connecting to camera
+Getting camera intrinsics
+CameraIntrinsics:
+  CameraMatrix:
+    CX: 963.131469726562
+    CY: 595.361694335938
+    FX: 2763.10400390625
+    FY: 2763.77685546875
+
+And modified the code in:
+~/git/cleargrasp/live_demo/live_zivid_demo.py
+
+but it turns out they are not used.
+
+So returning to the issue of input_depth_mapped not displaying the masks (masks are displayed when using the D415), we need to compare the outputs. We have the set of files in 
+
+TBC 2021.05.03 
+
+
+
+
 
 
 
