@@ -841,9 +841,18 @@ And modified the code in:
 
 but it turns out they are not used.
 
-So returning to the issue of input_depth_mapped not displaying the masks (masks are displayed when using the D415), we need to compare the outputs. We have the set of files in 
+So returning to the issue of input_depth_mapped not displaying the masks (masks are displayed when using the D415), we need to compare the outputs. We have the set of files in rgb_depth_z1_d15.tar.gz to be 
+https://colab.research.google.com/drive/1v9oTdrVxKyg_PICimRSGIVidyAIzajQ1#scrollTo=5chG3De84BLa
 
-TBC 2021.05.03 
+TBC 2021.05.04
+
+****************
+** 2021.05.04 **
+****************
+
+Incorrect D415 files uploaded: d415_color_img.npy and d415_input_depth.npy, dimension is (2,) in both cases double check.
+
+
 
 
 
