@@ -852,6 +852,18 @@ TBC 2021.05.04
 
 Incorrect D415 files uploaded: d415_color_img.npy and d415_input_depth.npy, dimension is (2,) in both cases double check.
 
+****************
+** 2021.05.05 **
+****************
+
+Analysing and comparing D415 and Z1+ depth files, still using the colab notebook. D415 seems to have more half tones.
+
+****************
+** 2021.05.06 **
+****************
+
+We need to reset this now we now how to get the correct size array with the Z1+ library.
+We want both the input depth and output depth (720, 1280) numpy arrays.
 
 
 
