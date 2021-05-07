@@ -862,8 +862,9 @@ Analysing and comparing D415 and Z1+ depth files, still using the colab notebook
 ** 2021.05.06 **
 ****************
 
-We need to reset this now we now how to get the correct size array with the Z1+ library.
-We want both the input depth and output depth (720, 1280) numpy arrays.
+We need to reset this now we know how to get the correct size array with the Z1+ library.
+We want both the input depth and output depth (720, 1280) numpy arrays, for both cameras.
+So we end up with 6 files to analyse, two RBG files, two depth files pre-processed, to depth files post-processed.
 
 
 
