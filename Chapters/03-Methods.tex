@@ -199,13 +199,30 @@ OpenEXR is not playing well with windows. TODO Try on Ubuntu. Works ok on Ubuntu
 "Overall,  our  main  algorithmic  insight  is  that  it  is  bestto  decompose  RGB-D  depth  completion  into  two  stages:1) prediction of surface normals and occlusion boundariesonly from color, and 2) optimization of global surface struc-ture from those predictions with soft constraints providedby observed depths.  During experiments we find with thisproposed  approach  has  significantly  smaller  relative  errorthan alternative approaches. It has the extra benefit that thetrained network is independent of the observed depths andso does not need to be retrained for new depth sensors."  
 The one we are interested in are autoenconders and GAN architectures (citations 70 and 58, respectively).
 
-\section{Live demo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ClearGrasp Live demo with RealSense 415
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Points to be made
+% 1. in realsense.cpp, what is happening in greater detail, how are rgb and depth 
+% images being extracted, what are the libraries ?
+% 2. What is the format of rgb and depth at that point ?
+
+A pipe object is ini
+
+% realsense camera firmware version 5.12.13.50 upgraded from 05.12.11.00
+% camera viewer
+% $ realsense-viewer
+
+
+\section{RealSense 415 ClearGrasp live demo}
 % Cleargrasp's realsense.cpp, used to stream images via TCP from camera to prediction engine:
 % https://github.com/dsikar/cleargrasp/blob/master/live_demo/realsense/realsense.cpp
 % builds on:
 % https://github.com/andyzeng/visual-pushing-grasping/blob/master/realsense/realsense.cpp
 % The latter was in reinforcement learning to train robotic arms for grasping
-ClearGrasp provides source code for a live demo. Once compiled to ./build/realsense, the executable can start the camera, which sends image data through TCP port 50010. The image data is displayed on an OpenGL screen (\ref{fig:realsenseOutputForReport}).
+ClearGrasp provides source code for a live demo using the Intel RealSense D415 depth camera. Once compiled to ./cleargrasp/live\_demo/build/realsense, the executable can start the camera, which sends image data through TCP port 50010. The image data is displayed on an OpenGL screen (\ref{fig:realsenseOutputForReport}).
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\textwidth]{Figures/realsenseOutputForReport.png}

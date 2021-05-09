@@ -866,6 +866,39 @@ We need to reset this now we know how to get the correct size array with the Z1+
 We want both the input depth and output depth (720, 1280) numpy arrays, for both cameras.
 So we end up with 6 files to analyse, two RBG files, two depth files pre-processed, to depth files post-processed.
 
+****************
+** 2021.05.07 **
+****************
+
+Continuing from previous day, plus write up in methods. Used the Intel RealSense Viewer to view 2D and 3D images from D415 camera.
+
+****************
+** 2021.05.08 **
+****************
+
+Today we take a step back to consider the cleargrasp model and qualitative analysis. Having used the RealSense Viewer, we can see 3D renderings such as point clouds plus images.
+The cleargrasp paper provides 2D images showing input and (predicted network) output depths, while the script live_demo.py provides a means of extracting the predicted depth. By combining image and depth
+RBG (H, W, 3)
+D (H, W) ~ (H, W, 1)
+RGB + D = (H, W, 4)
+We have the 4D array required to render RGBD in 3D space and by doing so, enabling qualitative analysis. Quantitative analysis not being possible because with the streaming camera image, there is not ground truth geometry.
+Two 3D renderings (using tools such as MeshLab), of the original RGBD data, and of the processed data, with incorporated output depth, should provide a means for qualitative analysis of the cleargrasp model, which is provided in 2D in the article, but not in 3D, which is fair enough, give the paper is in 2D format.
+The same can then be done for the Z1+ camera, and this should then uncover any additional processing required in terms of aligning camera outputs (Z1+ w.r.t. D415), such that the model is usable for the Z1+. 
+Ideally we would somehow be able to integrate this into Zivid Studio or RealSense Viewer. Given that both are probably using the same open source computer vision software, we might have time to do it.
+
+We can display a point cloud with OpenCV in:
+~/git/cleargrasp/livedemo/viz/display-point-cloud.py
+
+Next we need to build our own point cloud with input and network predicted input, then build the point cloud see:
+https://stackoverflow.com/questions/59590200/generate-point-cloud-from-depth-image
+
+Then continue with qualitative analysis. We should have enough in the way of output files to make a start.
+
+Continue from file:
+~/git/cleargrasp/livedemo/viz/create-point-cloud.py
+
+
+
 
 
 
