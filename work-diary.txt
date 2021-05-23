@@ -916,6 +916,17 @@ https://github.com/BerkeleyAutomation/sd-maskrcnn/issues/6
 
 https://github.com/BerkeleyAutomation/perception/blob/c5c07f8e26964fd006db59d5b2d2385420eb7789/perception/image.py#L1478
 
+****************
+** 2021.05.22 **
+****************
+
+Ran tests, documented in results appendix, on running RealSense Viewer, Zivid Studio, outputting point clouds, and displaying with Open3D.
+
+****************
+** 2021.05.23 **
+****************
+
+Ran tests 4 to 7 in results appendix.
 
 
 
