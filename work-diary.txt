@@ -928,6 +928,18 @@ Ran tests, documented in results appendix, on running RealSense Viewer, Zivid St
 
 Ran tests 4 to 7 in results appendix.
 
+****************
+** 2021.05.30 **
+****************
+
+We reach a stage were a better understanding of point clouds and depth is required.
+
+To perform qualitative analysis on the depth completing, we need to visualise the point cloud before and after the prediction. This involves creating a point cloud from RGB and depth, with can be acquired with both cameras. Once RGB and depth have been generated, there are points to consider. Matching the point cloud to RGB is likely to involve upsampling or downsampling, especially with the predicted depth, which is smaller than the input depth. Also there is the question of the Projection Matrix, "used to project vertices of 3D objects onto the screen in order to create images of these objects that follow the rules of perspective."
+https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix
+
+
+
+
 
 
 
