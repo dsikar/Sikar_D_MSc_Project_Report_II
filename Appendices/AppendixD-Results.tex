@@ -333,7 +333,40 @@ We perform qualitative evaluation on D415 and Zivid One+ point cloud outputs (Fi
 \label{fig:OpenCV-D415-Zivid-Point-Cloud}
 \end{figure}
 
-We now need to look at projection matrices used to generated the depth images. These are most likely to be different in both environments (Intel, Zivid).
+We notice that with the current settings, the D415 point cloud partially recreates the transparent geometries, specially the top back part of the glasses, while the bottom part follows approximately the (offset) geometry of the backdrop, which is curved between bottom and back surfaces. The bottle presents the same characteristics, except near the neck, where the curved profile is better defined in the point cloud. The Zivid One+ output (as per current settings) is approximately the same, except it fails to recreate the bottle geometry where it is curved near the neck, and also generates some noise behind the backdrop.
+
+We should perhaps look at projection matrices used to generate the depth images. These are likely to be different in both environments (Intel, Zivid).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% RUN 09 - D415, Redwood and Zivid One+ point cloud data comparison
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Run 09 -  D415, Redwood and Zivid One+ point cloud data comparison}
+\label{app_res:09}
+We were able to generate a point cloud using script viz/create-point-cloud.py using RGB and depth files viz/color.png and viz/depth.png respectively. It turns out this have shape (1200, 1920, 4) and (1200, 1920, 3) respectively. We were not able to generate a point cloud using Redwood dataset files viz/001\_color.png and viz/001\_depth.png, with shapes (240, 320, 3) and (240, 320) respectively.
+
+The saved numpy arrays for D415 and Zivid One+, using script live\_demo.py and zivid\_live\_demo.py have the same shape as Redwood data, i.e. (H, W, 3) for RGB and (H, W) for depth.
+
+We are none the wiser in terms of generating a point cloud from these two files. Recapping, the reason we want to do this is to perform qualitative analysis on the completed depth, by generating a point cloud of the RGB and acquired depth and comparing it to a point cloud of the RGB and predicted depth.
+\begin{verbatim}
+Commit: d83278b
+Command: 
+Ran live\_demo/D415RedwoodZividDataComparison.ipynb notebook.
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% RUN 10 - Generating Point Cloud from D415 RGB and Depth outputs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Run 10 -  Generating Point Cloud from D415 RGB and Depth outputs}
+\label{app_res:10}
+\begin{verbatim}
+Commit: 400d0af
+Command: 
+python create-point-cloud.py
+\end{verbatim}
+We should now be able to perform qualitative analysis but comparing point clouds of depth camera output with predicted depth.
+TODO. Add screen captures
+
+
 
 
 % TODO write up links
@@ -352,6 +385,7 @@ We now need to look at projection matrices used to generated the depth images. T
 % https://github.com/Shreeyak/cleargrasp/tree/aspect_ratio_change/data/sample_dataset/real-val/d435
 % deep completion
 % https://github.com/yindaz/DeepCompletionRelease
+% inte
 
 
 
