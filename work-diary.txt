@@ -938,8 +938,33 @@ To perform qualitative analysis on the depth completing, we need to visualise th
 https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix
 
 ****************
-** 2021.06.13 **
+** 2021.06.20 **
 ****************
+
+We briefly looked at camera calibratioin at it seems the D415 is factory calibrated, and will not need recalibration unless is suffers a hard knock such as falling on the ground:
+https://github.com/IntelRealSense/librealsense/issues/2329
+
+In the Zivid One+ knowledge base, only calibration mentioned is hard-eye calibration:
+https://www.zivid.com/quick-start-guide-for-zivid-one-plus
+Which does not apply to this study, since there is no robotic arm or end effector.
+
+Got a rendering closer to zivid studio by using the camera intrinsics and using this code:
+https://stackoverflow.com/questions/60648588/can-open3d-visualize-a-point-cloud-in-rgb-mode
+
+We now have the script to do qualitative analysis, with the point clouds rendered with RGB image and camera intrisics, so in line with D415 RealSense Viewer and Zivid Studio renderings.
+Next we'll create command line parameters for camera, rgb and depth python array files, create the renderings for input depth and predicted depth, create front, side, top and perspective views of both cases, as well as RealSense Viewer and Zivid Studio. This should give us four sets of four images, to then be added to appendix and discussion.
+
+We have all the screen captures in Pictures and the numpy arrays in viz/data so should be able to produce all views in the next session.
+Todo:
+1. Finish cropping d415 images
+2. Assembled isometric views
+3. Build point clouds
+4. Generate isometric views
+
+
+
+
+
 
 
 
