@@ -941,7 +941,7 @@ https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthogr
 ** 2021.06.20 **
 ****************
 
-We briefly looked at camera calibratioin at it seems the D415 is factory calibrated, and will not need recalibration unless is suffers a hard knock such as falling on the ground:
+We briefly looked at camera calibration at it seems the D415 is factory calibrated, and will not need recalibration unless is suffers a hard knock such as falling on the ground:
 https://github.com/IntelRealSense/librealsense/issues/2329
 
 In the Zivid One+ knowledge base, only calibration mentioned is hard-eye calibration:
@@ -961,7 +961,17 @@ Todo:
 3. Build point clouds
 4. Generate isometric views
 
+****************
+** 2021.06.27 **
+****************
 
+Added RealSense Viewer and Zivid Studio views, showing glass surfaces captures incorrectly.
+
+TODOS for tomorrow:
+1. Add views for scaled input:
+python create-point-cloud.py --rgb=./data/zivid/zivid_color_img.npy --depth=./data/zivid/zivid_input_depth_scaled.npy --camera=zivid --depth_type=acquired
+2. Rerun with Zivid One+ and scaled values (corrected zivid_utils.py
+3. Complete create-point-cloud.py (scale image when rendering predicted depth).
 
 
 
