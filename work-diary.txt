@@ -973,6 +973,12 @@ python create-point-cloud.py --rgb=./data/zivid/zivid_color_img.npy --depth=./da
 2. Rerun with Zivid One+ and scaled values (corrected zivid_utils.py
 3. Complete create-point-cloud.py (scale image when rendering predicted depth).
 
+****************
+** 2021.06.28 **
+****************
+
+Create the Open3D point cloud views for Zivid One+ scaled histograms.
+
 
 
 
