@@ -979,7 +979,13 @@ python create-point-cloud.py --rgb=./data/zivid/zivid_color_img.npy --depth=./da
 
 Create the Open3D point cloud views for Zivid One+ scaled histograms.
 
+****************
+** 2021.07.06 **
+****************
 
+We need to add all experiments documented in pointcloudrenders.txt to our appendix, with images.
+
+We may also have to modify our live_demo.py scripts to take RGB and depth arrays as parameters, so we can to regenerate the live demo screens.
 
 
 
