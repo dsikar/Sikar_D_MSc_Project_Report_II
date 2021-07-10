@@ -987,6 +987,12 @@ We need to add all experiments documented in pointcloudrenders.txt to our append
 
 We may also have to modify our live_demo.py scripts to take RGB and depth arrays as parameters, so we can to regenerate the live demo screens.
 
+****************
+** 2021.07.10 **
+****************
+
+Added all experimental results data to github, should be able to start documenting, rendering and generating Open3D screen captures.
+
 
 
 
